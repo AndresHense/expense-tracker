@@ -4,8 +4,20 @@ export default (state,action)=>{
 			return {
 				...state,
 					transactions: state.transactions
-							.filter(tr => tr.id !== action.payload)
+							.filter(tr => tr._id !== action.payload)
+			}
+		case 'TRANSACTION_ERROR':
+			return {
+				...state,
+					error: action.payload
 			}	
+		case 'GET_TRANSACTIONS':
+			return {
+				...state,
+				loading:false,
+				transactions: action.payload
+			}	
+
 		case 'ADD_TRANSACTION':
 			return {
 				...state, transactions: [...state.transactions,action.payload]
